@@ -25,7 +25,11 @@ class AccessService {
 			throw new BadRequest('Invalid credentials. Please try again')
 
 		// unselect field password for client
-		const userFields = unselectFields(userExists, ['password'])
+		const userFields = unselectFields(userExists, [
+			'password',
+			'createdAt',
+			'updatedAt',
+		])
 
 		// generate token
 		const payload = {
@@ -36,14 +40,16 @@ class AccessService {
 
 		return {
 			accessToken,
-			...userFields,
+			user: {
+				...userFields,
+			},
 		}
 	}
 
 	async register({ username, email, password }) {
 		// check if user exist
 		const userExists = await checkUserByEmail(email)
-		console.log(userExists)
+
 		if (userExists) throw new Conflict('Email already in use. ')
 
 		// encryppt the password but the mongoose will do it before save to db
@@ -59,11 +65,15 @@ class AccessService {
 		const accessToken = generateToken(payload, EXPIRES_ATK)
 
 		// unselect field password for client
-		const userFields = unselectFields(user, ['password'])
+		const userFields = unselectFields(user, [
+			'password',
+			'createdAt',
+			'updatedAt',
+		])
 
 		return {
+			accessToken,
 			user: {
-				accessToken,
 				...userFields,
 			},
 		}

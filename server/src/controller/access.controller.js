@@ -1,4 +1,4 @@
-const { OkResponse } = require('../utils/success.response')
+const { OkResponse, CreatedResponse } = require('../utils/success.response')
 const AccessService = require('../service/access.services')
 const { loginSchema, registerSchema } = require('../validation/index')
 const { BadRequest } = require('../utils/error.response')
@@ -35,7 +35,7 @@ class AccessController {
 			throw new BadRequest(errorMessage)
 		}
 		// if don't have any error excute method register in service
-		return new OkResponse({
+		return new CreatedResponse({
 			metaData: await AccessService.register(req.body),
 		}).send(res)
 	}
