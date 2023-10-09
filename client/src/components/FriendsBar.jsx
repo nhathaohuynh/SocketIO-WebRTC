@@ -8,7 +8,6 @@ const FriendsBar = () => {
 	const [isOpenDialog, setIsOpenDialog] = useState(false)
 	const addFriendButton = () => {
 		setIsOpenDialog(true)
-		// const handleOpenAddFriendDialog = () => {}
 	}
 
 	const handlerCloseDialog = () => {

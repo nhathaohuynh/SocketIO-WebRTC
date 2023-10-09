@@ -19,6 +19,15 @@ const userSchema = new Schema(
 		password: {
 			type: String,
 		},
+		friends: {
+			type: [
+				{
+					type: Schema.Types.ObjectId,
+					ref: 'User',
+				},
+			],
+			default: [],
+		},
 	},
 	{
 		timestamps: true,

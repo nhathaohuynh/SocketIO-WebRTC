@@ -5,7 +5,7 @@ const { APP_SECRET } = require('../../config')
 const { findUserById } = require('../../database/repository/user.repo')
 
 module.exports = {
-	verifyToken: asyncHandler((req, res, bext) => {
+	auth: asyncHandler((req, res, next) => {
 		const isFormatToken = req.headers.authorization.startsWith('Bearer')
 
 		if (!isFormatToken) return next(new Authorization('Authorization!!'))
@@ -28,7 +28,7 @@ module.exports = {
 
 			// pass the user for request
 			req.user = foundUser
-			next()
+			return next()
 		})
 	}),
 }

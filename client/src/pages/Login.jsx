@@ -12,7 +12,6 @@ const Login = () => {
 	const { loading, error, isLogin, user } = useSelector(
 		(state) => state.authReducer,
 	)
-	console.log(error, isLogin)
 	const dispatch = useDispatch()
 
 	const navigate = useNavigate()

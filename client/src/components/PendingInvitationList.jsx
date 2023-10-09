@@ -1,5 +1,6 @@
 import React from 'react'
 import PendingInvitationListItem from './PendingInvitationListItem'
+import { useSelector } from 'react-redux'
 
 const INVATAIONS = [
 	{
@@ -28,14 +29,17 @@ const INVATAIONS = [
 ]
 
 const PendingInvitationList = () => {
+	const { penddingFriendsInvitations } = useSelector(
+		(state) => state.friendReducer,
+	)
 	return (
 		<div className='w-full h-[28%] flex flex-col items-center overflow-y-auto overflow-x-hidden invitationScroll'>
-			{INVATAIONS.map((inv) => (
+			{penddingFriendsInvitations?.map((inv) => (
 				<PendingInvitationListItem
 					key={crypto.randomUUID()}
-					id={inv.id}
-					sender={inv.sender.username}
-					email={inv.sender.email}
+					id={inv._id}
+					sender={inv?.senderId?.username}
+					email={inv?.senderId?.email}
 				/>
 			))}
 		</div>

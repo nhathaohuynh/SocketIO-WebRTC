@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { validateEmail } from '../validation'
 import { InputField } from './index'
-import { toastError } from '../utils/toast'
-import { apiSendFrinedInvitation } from '../redux/actions/friend.action'
+import { toastError, toastSuccess } from '../utils/toast'
+import { sendFriendInvitation } from '../apis'
 
 const AddFriendDialog = ({ isOpenDialog, handlerCloseDialog }) => {
 	const [email, setEmail] = useState('')
 
-	const handleSendInVitation = (e) => {
+	const handleSendInVitation = async (e) => {
 		// send friend request to server
 		e.preventDefault()
 		const isEmail = validateEmail(email)
@@ -24,13 +24,21 @@ const AddFriendDialog = ({ isOpenDialog, handlerCloseDialog }) => {
 			email,
 		}
 
-		dispatch(apiSendFrinedInvitation(data))
-		handlerCloseDialog()
-	}
-
-	const handleCloseDialog = () => {
-		handlerCloseDialog()
-		setEmail('')
+		try {
+			const response = await sendFriendInvitation(data)
+			console.log(response)
+			if (response.code === 1) {
+				handlerCloseDialog()
+				setEmail('')
+				toastSuccess('Invitation has been sent')
+			} else {
+				const message = response?.response?.data?.message
+				setEmail('')
+				toastError(message)
+			}
+		} catch (err) {
+			throw err
+		}
 	}
 
 	const onChangeInput = (e) => {
@@ -42,7 +50,9 @@ const AddFriendDialog = ({ isOpenDialog, handlerCloseDialog }) => {
 			{isOpenDialog ? (
 				<div
 					className='w-full mx-auto p-6 absolute top-0 left-0 right-0 bottom-0 bg-[rgba(0,0,0,0.5)] flex justify-center z-10'
-					onClick={handleCloseDialog}
+					onClick={() => {
+						handlerCloseDialog()
+					}}
 				>
 					<div
 						className='mt-10 bg-white rounded-xl shadow-lg w-[500px] h-[300px]'

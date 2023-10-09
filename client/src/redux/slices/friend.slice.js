@@ -10,7 +10,7 @@ const friendSlice = createSlice({
 	},
 
 	reducers: {
-		setPedingFriendInvitation: (state, action) => {
+		setPendingFriendInvitation: (state, action) => {
 			state.penddingFriendsInvitations = action.payload
 		},
 
@@ -24,7 +24,7 @@ const friendSlice = createSlice({
 	},
 })
 
-export const { setFriend, setOnlineUser, setPedingFriendInvitation } =
+export const { setFriend, setOnlineUser, setPendingFriendInvitation } =
 	friendSlice.actions
 
 export default friendSlice.reducer

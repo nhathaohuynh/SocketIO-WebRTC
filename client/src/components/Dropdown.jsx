@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import icons from '../utils/icons'
 import path from '../utils/path'
 import { logout } from '../utils/logout'
@@ -14,12 +14,11 @@ const Dropdown = () => {
 
 	return (
 		<>
-			<div className='relative'>
-				<button
-					className='text-white w-[20px] h-[20px]'
-					onClick={() => setIsShowDropdown(!isShowDropdown)}
-					type='button'
-				>
+			<div
+				className='relative'
+				onClick={() => setIsShowDropdown(!isShowDropdown)}
+			>
+				<button className='text-white w-[20px] h-[20px]' type='button'>
 					<icons.HiOutlineDotsVertical size={20} />
 				</button>
 				{/* Dropdown menu */}

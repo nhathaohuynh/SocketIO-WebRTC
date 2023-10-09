@@ -2,21 +2,26 @@ import React, { useState } from 'react'
 import Avatar from './Avatar'
 import Tooltip from './Tooltip'
 import InvitationDecisionButtons from './InvitationDecisionButtons'
+import { useDispatch } from 'react-redux'
+import {
+	apiAcceptFrinedInvitation,
+	apiRejectFrinedInvitation,
+} from '../redux/actions/friend.action'
 
-const PendingInvitationListItem = ({
-	sender,
-	id,
-	email,
-	acceptFriendInvitation = () => {},
-	rejectFriendInvitation = () => {},
-}) => {
+const PendingInvitationListItem = ({ sender, id, email }) => {
+	const dispatch = useDispatch()
+
 	const [buttonDisabled, setButtonDisabled] = useState(false)
 	const handleAcceptFriendInvitation = () => {
-		acceptFriendInvitation({ id })
+		console.log(id)
+		dispatch(apiAcceptFrinedInvitation({ id }))
+		setButtonDisabled(true)
 	}
 
 	const handleRejectFriendInvitation = () => {
-		rejectFriendInvitation({ id })
+		console.log(id)
+		dispatch(apiRejectFrinedInvitation({ id }))
+		setButtonDisabled(true)
 	}
 	return (
 		<div className='w-full flex items-center justify-between mt-[12px]'>
@@ -30,7 +35,7 @@ const PendingInvitationListItem = ({
 			<InvitationDecisionButtons
 				isDisable={buttonDisabled}
 				acceptInvitationHandler={handleAcceptFriendInvitation}
-				rejectInvitationHandler={rejectFriendInvitation}
+				rejectInvitationHandler={handleRejectFriendInvitation}
 			/>
 		</div>
 	)
