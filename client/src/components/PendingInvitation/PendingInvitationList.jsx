@@ -1,6 +1,6 @@
 import React from 'react'
-import PendingInvitationListItem from './PendingInvitationListItem'
 import { useSelector } from 'react-redux'
+import PendingInvitationListItem from './PendingInvitationListItem'
 
 const INVATAIONS = [
 	{

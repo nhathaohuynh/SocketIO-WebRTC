@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { authSlice, friendSlice } from './slices'
+import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import { persistStore, persistReducer } from 'redux-persist'
+import { authSlice, friendSlice } from './slices'
+import chatSlice from './slices/chat.slice'
 
 const commonConfig = {
 	key: 'current-user',
@@ -19,6 +20,7 @@ export const store = configureStore({
 	reducer: {
 		authReducer: userPersist,
 		friendReducer: friendSlice,
+		chatReducer: chatSlice,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware({

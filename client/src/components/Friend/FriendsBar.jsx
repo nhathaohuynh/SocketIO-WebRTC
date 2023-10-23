@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import FriendTitle from './FriendTitle'
+import { AddFriendDialog } from '..'
+import PendingInvitationList from '../PendingInvitation/PendingInvitationList'
 import FriendList from './FriendList'
-import PendingInvitationList from './PendingInvitationList'
-import { AddFriendDialog } from '.'
+import FriendTitle from './FriendTitle'
 
 const FriendsBar = () => {
 	const [isOpenDialog, setIsOpenDialog] = useState(false)

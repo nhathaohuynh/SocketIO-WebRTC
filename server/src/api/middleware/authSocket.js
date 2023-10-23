@@ -1,6 +1,6 @@
 const JWT = require('jsonwebtoken')
 const asynHandler = require('express-async-handler')
-const { Authorization } = require('../../utils/error.response')
+const { Authorization, BadRequest } = require('../../utils/error.response')
 const { APP_SECRET } = require('../../config')
 const { findUserById } = require('../../database/repository/user.repo')
 

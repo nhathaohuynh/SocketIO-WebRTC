@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { AppBar, FridensBar, Message, Sidebar } from '../components'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { connectSocketServer } from '../RealtimeCommunication/socketIoConnection'
+import { AppBar, FridensBar, Messager, Sidebar } from '../components'
 import { logout } from '../utils/logout'
-import { connectSocketServer } from '../realtimeCommunication/socketIoConnection'
 
 const Dashboard = () => {
 	const { user, isLogin, token } = useSelector((state) => state.authReducer)
+	const { chosenChatDetails } = useSelector((state) => state.chatReducer)
 	const dispatch = useDispatch()
 	useEffect(() => {
-		if (!isLogin && !user) {
+		if (!isLogin || !user) {
 			logout()
 		} else {
 			connectSocketServer(token, dispatch)
@@ -19,8 +20,8 @@ const Dashboard = () => {
 		<div className='w-full h-screen flex text-white'>
 			<Sidebar></Sidebar>
 			<FridensBar></FridensBar>
-			<Message></Message>
-			<AppBar></AppBar>
+			<Messager chosenChatDetails={chosenChatDetails}></Messager>
+			<AppBar chosenChatDetails={chosenChatDetails}></AppBar>
 		</div>
 	)
 }

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import InputField from '../components/InputField'
-import { Button, Loading } from '../components'
-import { validateRegisterForm } from '../validation'
-import { toastError, toastSuccess } from '../utils/toast'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { Button, Loading } from '../components'
+import InputField from '../components/Input/InputField'
 import { registerAction } from '../redux/actions/auth.action'
-import path from '../utils/path'
 import { clearError } from '../redux/slices/auth.slice'
+import path from '../utils/path'
+import { toastError, toastSuccess } from '../utils/toast'
+import { validateRegisterForm } from '../validation'
 
 const Register = () => {
 	const { loading, error, isLogin, user } = useSelector(

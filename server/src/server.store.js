@@ -31,9 +31,7 @@ const getOnlineUsers = () => {
 	const onlineUsers = []
 
 	connectedUsers.forEach(function (value, key) {
-		if (value.userId == userId) {
-			onlineUsers.push(key)
-		}
+		onlineUsers.push({ socketId: key, userId: value.userId })
 	})
 
 	return onlineUsers

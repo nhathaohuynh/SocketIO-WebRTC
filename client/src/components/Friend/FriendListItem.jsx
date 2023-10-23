@@ -1,5 +1,5 @@
 import React from 'react'
-import Avatar from './Avatar'
+import Avatar from '../Apps/Avatar'
 
 const FriendListItem = ({
 	username,
@@ -7,12 +7,12 @@ const FriendListItem = ({
 	isOnline,
 	isActive,
 	tab,
-	setIsActive,
+	handleChoosenActiveConversation,
 }) => {
 	return (
 		<div className='w-full'>
 			<button
-				onClick={() => setIsActive(tab)}
+				onClick={() => handleChoosenActiveConversation(tab, id, username)}
 				className={`${
 					isActive && 'bg-[rgba(255,255,255,0.1)]'
 				} w-full h-[42px] mt-[12px] flex items-center justify-start transform-none text-black p-1  rounded-sm relative`}

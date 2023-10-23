@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import Avatar from './Avatar'
-import Tooltip from './Tooltip'
-import InvitationDecisionButtons from './InvitationDecisionButtons'
 import { useDispatch } from 'react-redux'
 import {
 	apiAcceptFrinedInvitation,
 	apiRejectFrinedInvitation,
-} from '../redux/actions/friend.action'
+} from '../../redux/actions/friend.action'
+import Avatar from '../Apps/Avatar'
+import Tooltip from '../Tooltip/Tooltip'
+import InvitationDecisionButtons from './InvitationDecisionButtons'
 
 const PendingInvitationListItem = ({ sender, id, email }) => {
 	const dispatch = useDispatch()

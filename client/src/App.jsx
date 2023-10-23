@@ -1,8 +1,8 @@
-import { Routes, Route } from 'react-router-dom'
-import path from './utils/path'
-import { Dashboard, Home, Login, Register } from './pages'
+import { Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { Dashboard, Home, Login, Register } from './pages'
+import path from './utils/path'
 function App() {
 	return (
 		<div>

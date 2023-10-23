@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import { validateEmail } from '../validation'
-import { InputField } from './index'
-import { toastError, toastSuccess } from '../utils/toast'
-import { sendFriendInvitation } from '../apis'
+import { sendFriendInvitation } from '../../apis'
+import { toastError, toastSuccess } from '../../utils/toast'
+import { validateEmail } from '../../validation'
+import { InputField } from '../index'
 
 const AddFriendDialog = ({ isOpenDialog, handlerCloseDialog }) => {
 	const [email, setEmail] = useState('')
